@@ -7,8 +7,23 @@ import {
   FaEnvelope,
   FaFacebook,
 } from "react-icons/fa";
-
+import { useRef } from "react";
 function App() {
+  const carouselRef = useRef(null);
+
+  const scrollLeft = () => {
+    carouselRef.current.scrollBy({
+      left: -280, // التحكم باتجاه التمرير
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    carouselRef.current.scrollBy({
+      left: 280,
+      behavior: "smooth",
+    });
+  };
   return (
     <div dir="rtl">
       {/* Navbar */}
@@ -74,42 +89,35 @@ function App() {
       <section className="services" id="services">
         <h1>خدماتنا</h1>
         <div className="cards-section">
-          <img
-            src="https://scontent-pmo1-1.xx.fbcdn.net/v/t39.30808-1/467881261_122242988462003042_7065995097198332898_n.jpg?stp=c23.0.1110.1110a_dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=f4b9fd&_nc_ohc=iL0kg-oSX6IQ7kNvgFPFvWS&_nc_zt=24&_nc_ht=scontent-pmo1-1.xx&_nc_gid=AvnVaOGs2bEJAn0PGGZay9m&oh=00_AYCyq5VflDlNe0UUyavjxW0OLfG420MmBxJuA7T18aYjzA&oe=6763B980"
-            alt="Profile"
-          />
-
-          <div className="service-cards">
+          <button className="nav-btn left" onClick={scrollLeft}>
+            &gt;
+          </button>
+          <div className="carousel" ref={carouselRef}>
             <div className="service-card">
               <i className="fas fa-paint-brush"></i>
               <h3>تصميم الجرافيك</h3>
               <p>تصميمات إبداعية تناسب احتياجاتك المختلفة.</p>
             </div>
-
             <div className="service-card">
               <i className="fas fa-bullhorn"></i>
               <h3>الإعلانات</h3>
               <p>إعلانات احترافية تساعد في تحسين عملك.</p>
             </div>
-
             <div className="service-card">
               <i className="fas fa-image"></i>
               <h3>البوسترات</h3>
               <p>بوسترات جذابة لأي مناسبة.</p>
             </div>
-
             <div className="service-card">
               <i className="fas fa-signature"></i>
               <h3>تصاميم الشعارات</h3>
               <p>شعارات مميزة تمثل هوية علامتك التجارية.</p>
             </div>
-
             <div className="service-card">
               <i className="fas fa-id-card"></i>
               <h3>تصميم الهوية البصرية</h3>
               <p>تصميم كروت عمل، ختم، دفاتر فواتير وأعمال، وستاند رول.</p>
             </div>
-
             <div className="service-card">
               <i className="fas fa-share-alt"></i>
               <h3>تصاميم السوشيال ميديا</h3>
@@ -142,6 +150,9 @@ function App() {
               <p>إدارة احترافية لحساباتك وتحقيق أفضل النتائج.</p>
             </div>
           </div>
+          <button className="nav-btn right" onClick={scrollRight}>
+            &lt;
+          </button>
         </div>
       </section>
       {/* Portfolio Section */}
